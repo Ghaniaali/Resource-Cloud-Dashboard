@@ -1,0 +1,126 @@
+
+{
+  "servers": [
+    {
+      "id": "srv-001",
+      "name": "api-production-01",
+      "status": "Running",
+      "type": "t3.medium",
+      "region": "us-east-1"
+    },
+    {
+      "id": "srv-002",
+      "name": "worker-staging-01",
+      "status": "Stopped",
+      "type": "t3.small",
+      "region": "eu-west-1"
+    },
+    {
+      "id": "srv-003",
+      "name": "database-production-01",
+      "status": "Running",
+      "type": "m6i.large",
+      "region": "ap-south-1"
+    },
+    {
+      "id": "srv-004",
+      "name": "frontend-production-01",
+      "status": "Running",
+      "type": "t3.large",
+      "region": "us-east-1"
+    },
+    {
+      "id": "srv-005",
+      "name": "analytics-worker-01",
+      "status": "Stopped",
+      "type": "c6i.large",
+      "region": "eu-west-1"
+    },
+    {
+      "id": "srv-006",
+      "name": "backup-server-01",
+      "status": "Running",
+      "type": "t3.medium",
+      "region": "ap-south-1"
+    }
+  ],
+  "storage": [
+    {
+      "id": "bkt-001",
+      "bucketName": "company-backups-prod",
+      "sizeGB": 128.5,
+      "region": "us-east-1",
+      "createdDate": "2026-01-12"
+    },
+    {
+      "id": "bkt-002",
+      "bucketName": "user-uploads",
+      "sizeGB": 54.2,
+      "region": "eu-west-1",
+      "createdDate": "2026-03-18"
+    },
+    {
+      "id": "bkt-003",
+      "bucketName": "analytics-data-lake",
+      "sizeGB": 512.8,
+      "region": "ap-south-1",
+      "createdDate": "2025-11-07"
+    },
+    {
+      "id": "bkt-004",
+      "bucketName": "static-website-assets",
+      "sizeGB": 24.6,
+      "region": "us-east-1",
+      "createdDate": "2026-05-22"
+    },
+    {
+      "id": "bkt-005",
+      "bucketName": "logs-archive",
+      "sizeGB": 86.3,
+      "region": "eu-west-1",
+      "createdDate": "2026-02-14"
+    }
+  ],
+  "functions": [
+    {
+      "id": "fn-001",
+      "name": "process-upload",
+      "runtime": "Node.js 22",
+      "memoryMB": 512,
+      "region": "us-east-1",
+      "lastUpdated": "2026-10-10"
+    },
+    {
+      "id": "fn-002",
+      "name": "send-notification",
+      "runtime": "Python 3.12",
+      "memoryMB": 256,
+      "region": "eu-west-1",
+      "lastUpdated": "2026-10-08"
+    },
+    {
+      "id": "fn-003",
+      "name": "generate-report",
+      "runtime": "Python 3.12",
+      "memoryMB": 1024,
+      "region": "ap-south-1",
+      "lastUpdated": "2026-10-12"
+    },
+    {
+      "id": "fn-004",
+      "name": "resize-image",
+      "runtime": "Node.js 22",
+      "memoryMB": 512,
+      "region": "us-east-1",
+      "lastUpdated": "2026-09-29"
+    },
+    {
+      "id": "fn-005",
+      "name": "cleanup-logs",
+      "runtime": "Python 3.12",
+      "memoryMB": 256,
+      "region": "eu-west-1",
+      "lastUpdated": "2026-10-11"
+    }
+  ]
+}
