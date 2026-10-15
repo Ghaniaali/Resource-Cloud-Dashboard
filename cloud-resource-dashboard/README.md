@@ -4,19 +4,15 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Development server
 
-The dashboard loads its resource data from the local JSON Server API. Start the API in one terminal:
-
-```bash
-npm run start:api
-```
-
-Then, in a second terminal, start the Angular app:
+Start the dashboard and its local JSON Server API together:
 
 ```bash
 npm start
 ```
 
-Open `http://localhost:4200/` after both servers are running. The mock API serves `db.json` at `http://localhost:3000`; if it is not running, the Servers page cannot load its inventory.
+Open `http://localhost:4200/`. The API serves `db.json` at `http://localhost:3000`; both processes stop when you stop the development command.
+
+To run either service by itself, use `npm run start:app` or `npm run start:api` in separate terminals.
 
 ## Code scaffolding
 
