@@ -36,21 +36,9 @@ h1 {
   white-space: nowrap;
 }
 
-.environment-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #f79009;
-}
-
 @media (max-width: 760px) {
   .topbar {
     padding: 18px 16px;
     align-items: flex-start;
-  }
-
-  .environment {
-    font-size: 11px;
-    padding: 7px;
   }
 }

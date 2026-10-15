@@ -1,1 +1,123 @@
-<p>storage works!</p>
+
+<section class="page-heading">
+  <p class="eyebrow">OBJECT STORAGE</p>
+  <h2>Storage</h2>
+  <p class="description">
+    Explore storage buckets, usage and deployment regions.
+  </p>
+</section>
+
+<div class="service-banner">
+  <span class="service-icon">S3</span>
+  <div>
+    <strong>Amazon S3</strong>
+    <p>
+      Amazon Simple Storage Service stores and retrieves objects
+      such as files, backups, images and application data.
+    </p>
+  </div>
+</div>
+
+<section class="summary-grid">
+  <article class="summary-card">
+    <div class="card-label">Total buckets</div>
+    <div class="card-value">{{ buckets.length }}</div>
+    <div class="card-note">Storage resources</div>
+  </article>
+
+  <article class="summary-card">
+    <div class="card-label">Total stored data</div>
+    <div class="card-value">{{ totalSizeGB | number:'1.1-1' }} GB</div>
+    <div class="card-note">Combined mock capacity</div>
+  </article>
+
+  <article class="summary-card">
+    <div class="card-label">Regions used</div>
+    <div class="card-value">{{ regions.length }}</div>
+    <div class="card-note">Distinct regions</div>
+  </article>
+</section>
+
+<section class="resource-panel">
+  <div class="panel-heading">
+    <div>
+      <h3>Storage inventory</h3>
+      <p>Review bucket names, sizes and creation dates.</p>
+    </div>
+    <span class="record-count">{{ filteredBuckets.length }} records</span>
+  </div>
+
+  <div class="toolbar">
+    <label class="search-box">
+      <span aria-hidden="true">⌕</span>
+      <input
+        type="search"
+        aria-label="Search buckets by name"
+        placeholder="Search buckets..."
+        [(ngModel)]="searchTerm">
+    </label>
+
+    <label class="region-control">
+      <span>Region</span>
+      <select
+        aria-label="Filter storage by region"
+        [(ngModel)]="selectedRegion">
+        <option value="All">All regions</option>
+        @for (region of regions; track region) {
+          <option [value]="region">{{ region }}</option>
+        }
+      </select>
+    </label>
+
+    <button class="clear-button" (click)="clearFilters()">Reset</button>
+  </div>
+
+  @if (loading) {
+    <div class="state-message" role="status">
+      <span class="spinner"></span>
+      Loading storage resources...
+    </div>
+  } @else if (errorMessage) {
+    <div class="state-message error-state" role="alert">
+      {{ errorMessage }}
+      <button class="clear-button" (click)="loadStorage()">Try again</button>
+    </div>
+  } @else if (filteredBuckets.length === 0) {
+    <div class="state-message">
+      <strong>No buckets found</strong>
+      <p>Try a different name or region.</p>
+      <button class="clear-button" (click)="clearFilters()">Clear filters</button>
+    </div>
+  } @else {
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>BUCKET NAME</th>
+            <th>SIZE</th>
+            <th>REGION</th>
+            <th>CREATED DATE</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (bucket of filteredBuckets; track bucket.id) {
+            <tr>
+              <td>
+                <div class="server-name">
+                  <span class="server-avatar">B</span>
+                  <div>
+                    <strong>{{ bucket.bucketName }}</strong>
+                    <small>{{ bucket.id }}</small>
+                  </div>
+                </div>
+              </td>
+              <td>{{ bucket.sizeGB | number:'1.1-1' }} GB</td>
+              <td>{{ bucket.region }}</td>
+              <td>{{ bucket.createdDate | date:'mediumDate' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

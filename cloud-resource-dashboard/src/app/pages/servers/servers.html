@@ -1,1 +1,147 @@
-<p>servers works!</p>
+
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">COMPUTE</p>
+    <h2>Servers</h2>
+    <p class="description">
+      Manage virtual servers and monitor their operational status.
+    </p>
+  </div>
+</section>
+
+<div class="service-banner">
+  <span class="service-icon">EC2</span>
+  <div>
+    <strong>Amazon EC2</strong>
+    <p>
+      Amazon Elastic Compute Cloud provides scalable virtual servers
+      for running applications in the AWS cloud.
+    </p>
+  </div>
+</div>
+
+<section class="summary-grid" aria-label="Server statistics">
+  <article class="summary-card">
+    <div class="card-label">Total servers</div>
+    <div class="card-value">{{ servers.length }}</div>
+    <div class="card-note">Across all regions</div>
+  </article>
+
+  <article class="summary-card">
+    <div class="card-label">Running</div>
+    <div class="card-value success-text">{{ runningCount }}</div>
+    <div class="card-note">Operational instances</div>
+  </article>
+
+  <article class="summary-card">
+    <div class="card-label">Stopped</div>
+    <div class="card-value danger-text">{{ stoppedCount }}</div>
+    <div class="card-note">Inactive instances</div>
+  </article>
+</section>
+
+<section class="resource-panel">
+  <div class="panel-heading">
+    <div>
+      <h3>Server inventory</h3>
+      <p>Search and filter your compute resources.</p>
+    </div>
+
+    <span class="record-count">
+      {{ filteredServers.length }} records
+    </span>
+  </div>
+
+  <div class="toolbar">
+    <label class="search-box">
+      <span aria-hidden="true">⌕</span>
+      <input
+        type="search"
+        aria-label="Search servers by name"
+        placeholder="Search servers..."
+        [(ngModel)]="searchTerm">
+    </label>
+
+    <label class="region-control">
+      <span>Region</span>
+      <select
+        aria-label="Filter servers by region"
+        [(ngModel)]="selectedRegion">
+        <option value="All">All regions</option>
+        @for (region of regions; track region) {
+          <option [value]="region">{{ region }}</option>
+        }
+      </select>
+    </label>
+
+    <button class="clear-button" (click)="clearFilters()">
+      Reset
+    </button>
+  </div>
+
+  @if (loading) {
+    <div class="state-message" role="status">
+      <span class="spinner"></span>
+      Loading server resources...
+    </div>
+  } @else if (errorMessage) {
+    <div class="state-message error-state" role="alert">
+      {{ errorMessage }}
+      <button class="clear-button" (click)="loadServers()">
+        Try again
+      </button>
+    </div>
+  } @else if (filteredServers.length === 0) {
+    <div class="state-message">
+      <strong>No servers found</strong>
+      <p>Try another search term or region.</p>
+      <button class="clear-button" (click)="clearFilters()">
+        Clear filters
+      </button>
+    </div>
+  } @else {
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>SERVER NAME</th>
+            <th>STATUS</th>
+            <th>INSTANCE TYPE</th>
+            <th>REGION</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (server of filteredServers; track server.id) {
+            <tr>
+              <td>
+                <div class="server-name">
+                  <span class="server-avatar">S</span>
+                  <div>
+                    <strong>{{ server.name }}</strong>
+                    <small>{{ server.id }}</small>
+                  </div>
+                </div>
+              </td>
+
+              <td>
+                <span
+                  class="status-badge"
+                  [class.running]="server.status === 'Running'"
+                  [class.stopped]="server.status === 'Stopped'">
+                  <span class="status-dot"></span>
+                  {{ server.status }}
+                </span>
+              </td>
+
+              <td>
+                <code>{{ server.type }}</code>
+              </td>
+
+              <td>{{ server.region }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</section>

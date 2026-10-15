@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { CloudResource } from './cloud-resource';
+import { CloudResourceService } from './cloud-resource';
 
 describe('CloudResource', () => {
-  let service: CloudResource;
+  let service: CloudResourceService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CloudResource);
+    service = TestBed.inject(CloudResourceService);
   });
 
   it('should be created', () => {

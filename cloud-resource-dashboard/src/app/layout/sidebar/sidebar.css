@@ -84,12 +84,6 @@
   color: #98a2b3;
 }
 
-.online-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #32d583;
-}
 
 @media (max-width: 760px) {
   .sidebar {

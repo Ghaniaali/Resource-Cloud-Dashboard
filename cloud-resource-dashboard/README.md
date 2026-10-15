@@ -4,13 +4,19 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 ## Development server
 
-To start a local development server, run:
+The dashboard loads its resource data from the local JSON Server API. Start the API in one terminal:
 
 ```bash
-ng serve
+npm run start:api
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Then, in a second terminal, start the Angular app:
+
+```bash
+npm start
+```
+
+Open `http://localhost:4200/` after both servers are running. The mock API serves `db.json` at `http://localhost:3000`; if it is not running, the Servers page cannot load its inventory.
 
 ## Code scaffolding
 
