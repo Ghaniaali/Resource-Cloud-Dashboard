@@ -33,7 +33,7 @@ A responsive cloud resource management dashboard built with Angular, TypeScript,
 Clone the repository:
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone Resource-Cloud-Dashboard
 cd cloud-resource-dashboard
 ```
 
